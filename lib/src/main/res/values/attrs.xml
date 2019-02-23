@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="WaveView">
+        <attr name="waveCount" format="integer"/>
+        <attr name="waveColor" format="color"/>
+        <attr name="waveAmplitude" format="dimension"/>
+        <attr name="waveMaxSpeed" format="dimension"/>
+        <attr name="waveMinSpeed" format="dimension"/>
+        <attr name="waveRefreshInterval" format="integer"/>
+        <attr name="waveAutoAnim" format="boolean"/>
+        <attr name="waveInverted" format="boolean"/>
+        <attr name="waveDirection" format="enum">
+            <enum name="LEFT_TO_RIGHT" value="1"/>
+            <enum name="RIGHT_TO_LEFT" value="2"/>
+        </attr>
+        <attr name="waveVertical" format="boolean"/>
+    </declare-styleable>
+</resources>
