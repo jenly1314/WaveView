@@ -1,11 +1,11 @@
 # WaveView
 
 [![Download](https://img.shields.io/badge/download-App-blue.svg)](https://raw.githubusercontent.com/jenly1314/WaveView/master/app/release/app-release.apk)
-[![](https://jitpack.io/v/jenly1314/WaveView.svg)](https://jitpack.io/#jenly1314/WaveView)
+[![JitPack](https://jitpack.io/v/jenly1314/WaveView.svg)](https://jitpack.io/#jenly1314/WaveView)
 [![CI](https://travis-ci.org/jenly1314/WaveView.svg?branch=master)](https://travis-ci.org/jenly1314/WaveView)
 [![API](https://img.shields.io/badge/API-16%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=16)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/mit-license.php)
-[![Blog](https://img.shields.io/badge/blog-Jenly-9933CC.svg)](http://blog.csdn.net/jenly121)
+[![Blog](https://img.shields.io/badge/blog-Jenly-9933CC.svg)](https://jenly1314.github.io/)
 [![QQGroup](https://img.shields.io/badge/QQGroup-20867961-blue.svg)](http://shang.qq.com/wpa/qunwpa?idkey=8fcc6a2f88552ea44b1411582c94fd124f7bb3ec227e2a400dbbfaad3dc2f5ad)
 
 WaveView for Android 是一个水波纹动画控件视图，支持波纹数，波纹振幅，波纹颜色，波纹速度，波纹方向等属性完全可配。
@@ -26,7 +26,7 @@ WaveView for Android 是一个水波纹动画控件视图，支持波纹数，�
 | waveAutoAnim | boolean | true | 是否自动播放动画 |
 | waveInverted | boolean | false | 是否倒置 |
 | waveDirection | enum | DIRECTION.LEFT_TO_RIGHT | 波纹方向，默认从左到右 |
-| waveVertical | boolean | false | 是否竖立 |
+| waveVertical | boolean | false | 是否垂直 |
 
 
 
@@ -37,18 +37,18 @@ WaveView for Android 是一个水波纹动画控件视图，支持波纹数，�
 <dependency>
   <groupId>com.king.view</groupId>
   <artifactId>waveview</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <type>pom</type>
 </dependency>
 ```
 ### Gradle:
 ```gradle
-implementation 'com.king.view:waveview:1.0.0'
+implementation 'com.king.view:waveview:1.0.1'
 ```
 
 ### Lvy:
 ```lvy
-<dependency org='com.king.view' name='waveview' rev='1.0.0'>
+<dependency org='com.king.view' name='waveview' rev='1.0.1'>
   <artifact name='$AID' ext='pom'></artifact>
 </dependency>
 ```
@@ -60,11 +60,6 @@ allprojects {
         maven { url 'https://dl.bintray.com/jenly/maven' }
     }
 }
-```
-
-## 引入的库：
-```gradle
-compileOnly 'com.android.support:appcompat-v7:28.0.0'
 ```
 
 ## 示例
@@ -88,6 +83,11 @@ compileOnly 'com.android.support:appcompat-v7:28.0.0'
 
 更多使用详情，请查看[app](app)中的源码使用示例
 
+## 版本记录
+
+#### v1.0.1：2019-11-8
+* 移除Support.appcompat-v7依赖
+
 #### v1.0.0：2019-2-23
 *  WaveView初始版本
 
@@ -107,6 +107,8 @@ compileOnly 'com.android.support:appcompat-v7:28.0.0'
    Email: <a title="欢迎邮件与我交流" href="mailto:jenly1314@gmail.com" target="_blank">jenly1314#gmail.com</a> / <a title="给我发邮件" href="mailto:jenly1314@vip.qq.com" target="_blank">jenly1314#vip.qq.com</a>
 
    CSDN: <a title="CSDN博客" href="http://blog.csdn.net/jenly121" target="_blank">jenly121</a>
+
+   博客园: <a title="博客园" href="https://www.cnblogs.com/jenly" target="_blank">jenly</a>
 
    Github: <a title="Github开源项目" href="https://github.com/jenly1314" target="_blank">jenly1314</a>
 

@@ -7,12 +7,9 @@ import android.graphics.Paint;
 import android.graphics.Shader;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
-import android.support.annotation.DimenRes;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 
@@ -101,11 +98,6 @@ public class WaveView extends View {
     private Random mRandom;
 
     /**
-     * 密度
-     */
-    private float mDensity;
-
-    /**
      * 刷新视图
      */
     private final int REFRESH_VIEW = 1;
@@ -150,21 +142,20 @@ public class WaveView extends View {
         this(context,null);
     }
 
-    public WaveView(Context context, @Nullable AttributeSet attrs) {
+    public WaveView(Context context, AttributeSet attrs) {
         this(context, attrs,0);
     }
 
-    public WaveView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public WaveView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context,attrs);
     }
 
-    private void init(Context context,@Nullable AttributeSet attrs){
+    private void init(Context context, AttributeSet attrs){
 
         mRandom = new Random();
 
         DisplayMetrics displayMetrics = getDisplayMetrics();
-        mDensity = displayMetrics.density;
         mWaveAmplitude = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,20,displayMetrics);
         float maxSpeed = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,4,displayMetrics);
         float minSpeed = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,2,displayMetrics);
@@ -197,9 +188,9 @@ public class WaveView extends View {
         }
 
         a.recycle();
-        //换算实际速度
-        mMaxSpeed = maxSpeed/mDensity;
-        mMinSpeed = minSpeed/mDensity;
+
+        mMaxSpeed = maxSpeed;
+        mMinSpeed = minSpeed;
 
         mPaint = new Paint();
         updatePaint();
@@ -364,17 +355,17 @@ public class WaveView extends View {
         }
     }
 
-    private Handler mHandler = new Handler(){
+    private Handler mHandler = new Handler(new Handler.Callback() {
         @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
+        public boolean handleMessage(Message msg) {
             switch (msg.what){
                 case REFRESH_VIEW:
                     invalidate();
-                    break;
+                    return true;
             }
+            return false;
         }
-    };
+    });
 
 
     /**
@@ -431,7 +422,7 @@ public class WaveView extends View {
      * 设置波纹颜色
      * @param waveColor
      */
-    public void setWaveColor(@ColorInt int waveColor) {
+    public void setWaveColor(int waveColor) {
         this.mWaveColor = waveColor;
         this.mShader = null;
         updatePaint();
@@ -442,7 +433,7 @@ public class WaveView extends View {
      * 设置波纹颜色
      * @param resId
      */
-    public void setWaveColorResource(@ColorRes int resId){
+    public void setWaveColorResource(int resId){
         int color = getResources().getColor(resId);
         setWaveColor(color);
     }
@@ -475,18 +466,34 @@ public class WaveView extends View {
 
     /**
      * 设置波纹最大速度
+     * @param maxSpeed
+     */
+    public void setMaxSpeedDP(float maxSpeed) {
+        this.mMinSpeed = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,maxSpeed,getDisplayMetrics());
+    }
+
+    /**
+     * 设置波纹最大速度
+     * @param minSpeed
+     */
+    public void setMinSpeedDp(float minSpeed) {
+        this.mMinSpeed = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,minSpeed,getDisplayMetrics());
+    }
+
+    /**
+     * 设置波纹最大速度
      * @param resIds
      */
-    public void setMaxSpeedResource(@DimenRes int resIds) {
-        this.mMaxSpeed = getResources().getDimension(resIds)/mDensity;
+    public void setMaxSpeedResource(int resIds) {
+        this.mMaxSpeed = getResources().getDimension(resIds);
     }
 
     /**
      * 设置波纹最小速度
      * @param resIds
      */
-    public void setMinSpeedResource(@DimenRes int resIds) {
-        this.mMinSpeed = getResources().getDimension(resIds)/mDensity;
+    public void setMinSpeedResource(int resIds) {
+        this.mMinSpeed = getResources().getDimension(resIds);
     }
 
     /**
